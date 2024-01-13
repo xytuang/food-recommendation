@@ -6,21 +6,24 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 
-SECRET_KEY = os.getenv("API_KEY")
-LATITUDE = os.getenv("latitude")
-LONGITUDE = os.getenv("longitude")
+SPOONACULAR_API_KEY = os.getenv("SPOONACULAR_API_KEY")
+GEOLOCATION_API_KEY = os.getenv("GEOLOCATION_API_KEY")
+latitude = os.getenv("latitude")
+longitude = os.getenv("longitude")
 
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 def get_recommendations(restaurantName, distance, cuisine, rating, status):
+    global latitude
+    global longitude
     resp = requests.get("https://api.spoonacular.com/food/restaurants/search",
                  params = {
-                     "apiKey":SECRET_KEY,
+                     "apiKey":SPOONACULAR_API_KEY,
                      "query": restaurantName,
-                     "lat": LATITUDE,
-                     "lng": LONGITUDE,
+                     "lat": latitude,
+                     "lng": longitude,
                      "distance": distance,
                      "cuisine": cuisine,
                      "min-rating": rating,
@@ -29,9 +32,19 @@ def get_recommendations(restaurantName, distance, cuisine, rating, status):
     data = resp.json()
     return data
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
-    return "nothing"
+    # resp = requests.get("https://ipgeolocation.abstractapi.com/v1",
+    #                 params = {
+    #                    "api_key": GEOLOCATION_API_KEY
+    #                 })
+    # data = resp.json()
+    # global latitude
+    # global longitude
+    # latitude = data["latitude"]
+    # longitude = data["longitude"]
+    return "There is nothing for you here!"
+    
 
 
 @app.route("/search", methods=["POST"])
