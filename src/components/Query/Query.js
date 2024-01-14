@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import './query.css'
-import Restaurant from './restaurant'
+import './Query.css'
+import Restaurant from '../Restaurant/Restaurant'
 
 const Query = () => {
     const cuisines = ['African', 'American', 'British', 'Cajun', 'Caribbean', 'Chinese', 'Eastern European', 'French', 'German', 'Greek', 'Indian', 'Irish', 'Italian', 'Japanese', 'Jewish', 'Korean', 'Latin American', 'Mexican', 'Middle Eastern', 'Nordic', 'Southern', 'Spanish', 'Thai', 'Vietnamese']
@@ -11,9 +11,10 @@ const Query = () => {
     const [rating, setRating] = useState('4')
     const [open, setOpen] = useState('true')
     const [sortBy, setSortBy] = useState('Relevance')
-    const [hasSearched, setSearched] = useState(false)
-    const [searchResults, setSearchResults] = useState(null)
-
+    const [searchResults, setSearchResults] = useState(() => {
+        const storedData = localStorage.getItem('searchResults')
+        return storedData ? JSON.parse(storedData) : null
+    })
 
 
     const handleSubmit = async (e) => {
@@ -35,9 +36,17 @@ const Query = () => {
         })
         let res = await response.json()
         let restaurants = res.restaurants
-        console.log(restaurants)
-        setSearchResults(restaurants)
-        setSearched(true)
+        let newRestaurants = []
+        const knownRestaurants = new Set()
+        for (let i = 0; i < restaurants.length; i++) {
+            let currString = restaurants[i].name.toLowerCase()
+            if (!knownRestaurants.has(currString)) {
+                knownRestaurants.add(currString)
+                newRestaurants.push(restaurants[i])
+            }
+        }
+        localStorage.setItem('searchResults', JSON.stringify(newRestaurants))
+        setSearchResults(newRestaurants)
     }
 
 
@@ -77,12 +86,7 @@ const Query = () => {
                 <button type='submit' onClick={handleSubmit}>Search!</button>
                 </div>
                 <div className='restaurants-container'>
-                    {hasSearched ? searchResults.map(
-                        (element) => <Restaurant name={element.name} 
-                                            rating={element.weighted_rating_value}
-                                            address={element.address.street_addr + element.address.street_addr_2}
-                                            miles={element.miles}
-                                            key={element._id}/>) 
+                    {searchResults != null ? searchResults.map((element) => <Restaurant restaurant={element} key={element._id}/>)
                     : "Search something!"}
                 </div>
         </div>
