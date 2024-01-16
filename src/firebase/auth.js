@@ -1,3 +1,4 @@
+import { writeUserData } from './database'
 import app from './firebase'
 
 import {
@@ -20,6 +21,7 @@ const register = async (email, password) => {
 const login = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password)
+        writeUserData(email)
     } catch (error) {
         console.log(error)
     }

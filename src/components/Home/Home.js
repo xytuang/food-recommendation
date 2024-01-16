@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { logout } from '../../firebase/auth'
 import Query from '../Query/Query'
 import Logbook from '../Logbook/Logbook'
 import './Home.css'
@@ -13,6 +14,7 @@ const Home = () => {
             </div>
             {active === 'Query' && <Query/>}
             {active === 'Logbook' && <Logbook/>}
+            <button onClick={logout}>Logout</button>
         </div>
     )
 }
