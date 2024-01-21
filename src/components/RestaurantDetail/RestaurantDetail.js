@@ -8,7 +8,7 @@ const RestaurantDetail = () => {
 
     const handleAdd = async (list) => {
         await addToList(currRestaurant, list)
-        console.log(`${currRestaurant.name} has been added to your ${list}!`)
+        alert(`${currRestaurant.name} has been added to your ${list}!`)
     }
 
     return (
