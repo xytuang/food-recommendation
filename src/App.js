@@ -6,6 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './firebase/auth'
 import { useEffect } from 'react'
 import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail'
+import './index.css'
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     }
   }, [user])
   return (
-    <div>
+    <div className='container'>
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>

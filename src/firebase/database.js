@@ -3,7 +3,6 @@ import {
     ref,
     get,
     update,
-    push,
     remove,
     child
 } from 'firebase/database'
@@ -31,7 +30,6 @@ const addToList = (restaurant, list) => {
     if (user !== null) {
         const db = getDatabase(app)
         const uid = user.uid
-        // const newRestaurantKey = push(child(ref(db), 'user-restaurants/' + uid + '/' + list)).key
         const updates = {}
         updates['user-restaurants/' + uid + '/' + list + '/' + restaurant._id] = restaurant
         return update(ref(db), updates)
@@ -62,15 +60,6 @@ const deleteFromList = (id, list) => {
         const uid = user.uid
         const restaurantRef = ref(db, 'user-restaurants/' + uid + '/' + list + '/' + id)
         return remove(restaurantRef)
-        // const dbRef = ref(getDatabase(app))
-        
-        // return get(child(dbRef, 'user-restaurants/' + uid + '/' + list)).then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         return snapshot.val()
-        //     }
-        // }).catch((error) => {
-        //     return null
-        // })
     }
 }
 
