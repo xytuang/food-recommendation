@@ -17,8 +17,8 @@ const RestaurantDetail = () => {
             <div>Rating: {Math.round(currRestaurant.weighted_rating_value * 100)/ 100}</div>
             <div>Address: {currRestaurant.address.street_addr + currRestaurant.address.street_addr_2}</div>
             <div>Distance: {Math.round(currRestaurant.miles * 100)/ 100} miles</div>
-            <button onClick={() => handleAdd('visited')}>Add to visited list</button>            
-            <button onClick={() => handleAdd('wishlist')}>Add to wish list</button>
+            <button className="btn btn-blue" onClick={() => handleAdd('visited')}>Add to visited list</button>            
+            <button className="btn btn-blue" onClick={() => handleAdd('wishlist')}>Add to wish list</button>
         </div>
     )
 }

@@ -56,36 +56,38 @@ const Query = () => {
                 <form>
                     <label>Give me a name:</label>
                     <input type='text' 
-                    onChange={(e) => {setRestaurantName(e.target.value)}} value={restaurantName}/>
+                    onChange={(e) => {setRestaurantName(e.target.value)}} value={restaurantName}
+                    className="input-fields"/>
                 </form>
                 <form>
                     <label>How far away? </label>
                     <input type='number'
+                    className='input-fields'
                     onChange={(e) => {setDistance(e.target.value)}} value={distance}/>
                 </form>
-                <select onChange={(e) => {setCuisine(e.target.value)}}>
+                <select className="input-fields" onChange={(e) => {setCuisine(e.target.value)}}>
                     {cuisines.map((element) => <option key={element} value={element}>{element}</option>)}
                 </select>
-                <select onChange={(e) => {setRating(e.target.value)}}>
-                    <option value={'1'}>1 star and above</option>
-                    <option value={'2'}>2 star and above</option>
-                    <option value={'3'}>3 star and above</option>
-                    <option value={'4'}>4 star and above</option>
-                    <option value={'5'}>5 star</option>
+                <select className="input-fields"onChange={(e) => {setRating(e.target.value)}}>
+                    <option value={"1"}>1 star and above</option>
+                    <option value={"2"}>2 star and above</option>
+                    <option value={"3"}>3 star and above</option>
+                    <option value={"4"}>4 star and above</option>
+                    <option value={"5"}>5 star</option>
                 </select>
-                <select onChange={(e) => {setOpen(e.target.value)}}>
-                    <option value={'true'}>Open</option>
-                    <option value={'false'}>Closed</option>
+                <select className="input-fields" onChange={(e) => {setOpen(e.target.value)}}>
+                    <option value={"true"}>Open</option>
+                    <option value={"false"}>Closed</option>
                 </select>
-                <select onChange={(e) => {setSortBy(e.target.value)}}>
-                    <option value='Cheapest'>Cheapest</option>
-                    <option value='Fastest'>Fastest</option>
-                    <option value='Rating'>Rating</option>
-                    <option value='Distance'>Distance</option>
+                <select className="input-fields" onChange={(e) => {setSortBy(e.target.value)}}>
+                    <option value="Cheapest">Cheapest</option>
+                    <option value="Fastest">Fastest</option>
+                    <option value="Rating">Rating</option>
+                    <option value="Distance">Distance</option>
                 </select>
-                <button type='submit' onClick={handleSubmit}>Search!</button>
+                <button className="btn btn-blue" type="submit" onClick={handleSubmit}>Search!</button>
                 </div>
-                <div className='restaurants-container'>
+                <div className="restaurants-container">
                     {searchResults != null ? searchResults.map((element) => <Restaurant restaurant={element} key={element._id}/>)
                     : "Search something!"}
                 </div>

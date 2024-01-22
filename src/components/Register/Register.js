@@ -20,28 +20,28 @@ const Register = () => {
         <div>
             <form>
                 <div>
-                    <label id='email'>Email: </label>
                     <input
-                        labelid='email'
-                        placeholder='Enter your email'
-                        type='email'
-                        autoComplete='username'
+                        labelid="email"
+                        placeholder="Enter your email"
+                        type="email"
+                        autoComplete="username"
                         required
+                        className="login-fields"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div>
-                    <label id='password'>Password: </label>
                     <input
-                        labelid='password'
-                        placeholder='Enter your password'
-                        type='password'
-                        autoComplete='new-password'
+                        labelid="password"
+                        placeholder="Enter your password"
+                        type="password"
+                        autoComplete="new-password"
                         required
+                        className="login-fields"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button onClick={handleSubmit}>
+                <button onClick={handleSubmit} className="login-btns">
                     Sign Up
                 </button>
             </form>
