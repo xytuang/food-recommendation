@@ -69,7 +69,10 @@
 
 
 
-https://github.com/xytuang/food-recommendation/assets/88203777/c101854e-07f4-43bf-80af-37d5e8526d24
+
+
+https://github.com/xytuang/food-recommendation/assets/88203777/be0f7a88-ddfd-4efa-940b-1a354b6e4858
+
 
 
 
