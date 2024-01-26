@@ -67,7 +67,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+
+https://github.com/xytuang/food-recommendation/assets/88203777/c101854e-07f4-43bf-80af-37d5e8526d24
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
